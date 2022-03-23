@@ -21,3 +21,4 @@ coverage
 
 # Compiled binary addons
 build/Release
+node_modules
