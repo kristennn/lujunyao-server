@@ -15,7 +15,7 @@ let MYSQL_CONF = {
     user: 'root',
     password: '123456',
     port: '3306',
-    database: 'koa2_weibo_db',
+    database: 'lujunyao',
     max: 5,
     min: 0,
     idle: 10000
