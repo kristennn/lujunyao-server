@@ -8,7 +8,7 @@ const logger = require('koa-logger')
 const session = require('koa-session')
 const sessionStore = require('./utils/session')
 const redisStore = require('koa-redis')
-const notLoginApi = ['/empty-item/login', '/empty-item/getCaptcha']
+const notLoginApi = ['/empty-item/login', '/empty-item/getCaptcha', '/empty-item/h5']
 
 const { REDIS_CONF } = require('./conf/db')
 const { isProd } = require('./utils/env')
@@ -21,6 +21,7 @@ const api = require('./routes/api')
 const demo = require('./routes/demo')
 const category = require('./routes/category')
 const product = require('./routes/product')
+const h5 = require('./routes/h5')
 const koaStatic = require('koa-static')
 const path = require('path')
 const source = koaStatic(`${path.join(__dirname)}/public`)
@@ -92,7 +93,7 @@ app.use(async (ctx, next) => {
     }
 
     let { path } = ctx
-    
+    console.log('ctx', ctx)
     path = path.replace(/(\w*)\/$/, '$1')
     
     // 当前接口需要校验权限
@@ -143,6 +144,7 @@ app.use(api.routes(), api.allowedMethods())
 app.use(demo.routes(), demo.allowedMethods())
 app.use(category.routes(), category.allowedMethods())
 app.use(product.routes(), product.allowedMethods())
+app.use(h5.routes(), h5.allowedMethods())
 
 
 // error-handling
