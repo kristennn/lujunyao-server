@@ -15,5 +15,5 @@ module.exports = {
     notTest: ENV !== 'test',
 
     // 路径
-    mobilePath: ENV === 'dev' ? 'www.dev.com' : 'www.prod.com'
+    mobilePath: 'http://119.45.163.156:8080'
 }
