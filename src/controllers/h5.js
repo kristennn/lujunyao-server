@@ -2,24 +2,20 @@
  * @description h5 controller
  * @author xiaofei
  */
-const { productModel } = require('../models/index')
-const { categoryModel } = require('../models/index')
+const { productModel, categoryModel } = require('../models/index')
 const Sequelize = require('sequelize')
 const { Op } = Sequelize
 
 // 获取信息
 exports.getInfo = async ctx => {
     const { product } = ctx.query
-    
     try {
         const info = await productModel.findOne({
             where: {
                 code: product
             },
-            attributes: ['code'],
             include: [
                 {
-                    attributes: ['name'],
                     model: categoryModel
                 }
             ]
@@ -29,7 +25,10 @@ exports.getInfo = async ctx => {
         ctx.body = {
             code: 'SUCCESS',
             msg: '查询成功',
-            data: info
+            data: {
+                code: info.code,
+                category: info.category
+            }
         }
     } catch (error) {
         console.log(error)

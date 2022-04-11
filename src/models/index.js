@@ -15,6 +15,8 @@ roleModel.hasMany(roleMenuModel,{ foreignKey: 'roleId' })
 roleMenuModel.hasOne(menuModel,{ foreignKey: 'roleMenuId' })
 userModel.belongsTo(roleModel,{ foreignKey: 'roleId' })
 categoryModel.hasMany(productModel, { foreignKey: 'categoryId' })
+productModel.belongsTo(categoryModel, { foreignKey: 'categoryId' })
+
 
 module.exports={
     roleMenuModel,
